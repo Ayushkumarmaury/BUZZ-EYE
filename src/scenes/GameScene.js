@@ -310,7 +310,7 @@ if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
   // 🔼 **UP button**
   this.upBtn = this.add.image(
     this.scale.width * 0.15,
-    this.scale.height * 0.77,
+    this.scale.height * 0.8,
     "controlCircle"
   )
   .setScrollFactor(0)
@@ -326,7 +326,7 @@ if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
   // 🔽 **DOWN button**
   this.downBtn = this.add.image(
     this.scale.width * 0.15,
-    this.scale.height * 0.89,
+    this.scale.height * 0.9,
     "controlCircle"
   )
   .setScrollFactor(0)
