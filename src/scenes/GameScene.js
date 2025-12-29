@@ -550,7 +550,7 @@ else {
 
 // === MOBILE BUTTON MOVEMENT ===
 if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
-  const speed = 350;
+  const speed = 400;
 
   if (this.mobileMovingUp) {
     this.player.setVelocityY(-speed);
