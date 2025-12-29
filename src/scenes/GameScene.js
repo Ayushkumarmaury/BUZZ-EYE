@@ -637,7 +637,7 @@ if ((shouldShootDesktop || shouldShootMobile) && time > this.lastFired) {
     color
   );
 
-  this.lastFired = time + 220;
+  this.lastFired = time + 100;
 }
 
 
