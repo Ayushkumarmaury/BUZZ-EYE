@@ -59,7 +59,7 @@ this.input.topOnly = true;
       `Your Score is ${this.finalScore}.`,
       {
         fontSize: `${Math.floor(this.scale.width * 0.03)}px`,
-        fill: "rgba(244, 212, 28, 1)",
+        fill: "rgba(244, 53, 28, 1)",
         fontFamily: "cursive",
         fontStyle: "bold",
       }
@@ -72,7 +72,7 @@ this.input.topOnly = true;
       "Click on replay Button to play again.",
       {
         fontSize: `${Math.floor(this.scale.width * 0.03)}px`,
-         fill: "rgba(244, 212, 28, 1)",
+         fill: "rgba(244, 53, 28, 1)",
           fontFamily: "cursive",
           fontStyle: "bold",
       }
