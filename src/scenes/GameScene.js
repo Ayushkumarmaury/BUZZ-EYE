@@ -45,7 +45,12 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
+
     this.score = 0;
+
+    // allow 3 simultaneous touches
+  this.input.addPointer(2); // 1 extra pointer = total 3 pointers including default
+
 
     this.isGameOver = false;
 
@@ -555,15 +560,6 @@ if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
     this.player.setVelocityY(0);
   }
 
-// } else {
-//   // === DESKTOP KEYBOARD ===
-//   if (this.cursors.up.isDown) {
-//     this.player.setVelocityY(-400);
-//   } else if (this.cursors.down.isDown) {
-//     this.player.setVelocityY(400);
-//   } else {
-//     this.player.setVelocityY(0);
-//   }
 }
 
 
