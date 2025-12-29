@@ -19,7 +19,7 @@ export default class MenuScene extends Phaser.Scene {
      // --- Responsive Restart Instruction ---
     this.nameText = this.add.text(this.scale.width / 2, this.scale.height * 0.3, "Buzz Eye", {
       fontSize: `${Math.floor(this.scale.width * 0.06)}px`,
-      fill: "rgba(244, 212, 28, 1)",
+     fill: "rgba(244, 53, 28, 1)",
       fontFamily: "cursive",
       fontStyle: "bold",
     }).setOrigin(0.5);

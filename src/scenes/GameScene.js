@@ -78,58 +78,6 @@ export default class GameScene extends Phaser.Scene {
 
 
 
-    // --- MOBILE TOUCH INPUT FLAGS ---
-// this.mobileMovingUp = false;
-// this.mobileMovingDown = false;
-// this.lastTouchTime = 0;
-
-// // enable multi-touch (optional)
-// this.input.addPointer(2);
-
-// this.input.on("pointerdown", (pointer) => {
-//   const h = this.scale.height;
-//   const now = this.time.now;
-
-//   // 🔫 detect short tap to shoot
-//   if (now - this.lastTouchTime < 180) {
-//      this.shootBullet(
-//     this.playerBullets,
-//     this,
-//     this.player.x + 48,
-//     this.player.y,
-//     800,
-//     0xff0000
-//   );
-//   }
-//   this.lastTouchTime = now;
-
-//   // 🆙 movement zone
-//   if (pointer.y < h / 2) {
-//     this.mobileMovingUp = true;
-//     this.mobileMovingDown = false;
-//   } else {
-//     this.mobileMovingUp = false;
-//     this.mobileMovingDown = true;
-//   }
-// });
-
-// this.input.on("pointerup", () => {
-//   this.mobileMovingUp = false;
-//   this.mobileMovingDown = false;
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -303,36 +251,6 @@ this.events.once("shutdown", this.shutdown, this);
 
  
 
-//     // --- SHOOT BUTTON (transparent) ---
-// this.shootButton = this.add.rectangle(
-//   this.scale.width * 0.85,    // right side
-//   this.scale.height * 0.75,   // bottom area
-//   this.scale.width * 0.28,    // width of touch area
-//   this.scale.height * 0.35,   // height of touch area
-//   0xffffff,
-//   0.001                       // transparency (almost invisible but clickable)
-// )
-// .setScrollFactor(0)
-// .setDepth(20)
-// .setInteractive();
-
-// this.isShooting = false;
-
-// // 🔫 finger/hold starts shooting
-// this.shootButton.on("pointerdown", () => {
-//   this.isShooting = true;
-// });
-
-// // 🛑 stop shooting when released
-// this.shootButton.on("pointerup", () => {
-//   this.isShooting = false;
-// });
-
-// this.shootButton.on("pointerout", () => {
-//   this.isShooting = false;
-// });
-
-
 
 // inside create()
 if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
@@ -369,26 +287,56 @@ if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
 
 
 
+// ===== SHOW MOBILE BUTTONS ONLY =====
+if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
 
-// --- MOBILE movement controls (ignore shoot button tap) ---
-this.input.on("pointerdown", (pointer, objects) => {
-  
-  // ☑ if touching shoot button → don't move
-  if (objects.includes(this.shootButton)) return;
-
-  if (pointer.y < this.scale.height / 2) {
-    this.mobileMovingUp = true;
-    this.mobileMovingDown = false;
-  } else {
-    this.mobileMovingUp = false;
-    this.mobileMovingDown = true;
-  }
-});
-
-this.input.on("pointerup", () => {
   this.mobileMovingUp = false;
   this.mobileMovingDown = false;
-});
+
+  // ---- REUSABLE CIRCLE TEXTURE ----
+  const radius = 26;
+  const gfx = this.add.graphics({ x: 0, y: 0, add: false });
+  gfx.fillStyle(0x33aaff, 1);
+  gfx.fillCircle(radius, radius, radius);
+  gfx.generateTexture("controlCircle", radius * 2, radius * 2);
+  gfx.destroy();
+
+
+  // 🔼 **UP button**
+  this.upBtn = this.add.image(
+    this.scale.width * 0.15,
+    this.scale.height * 0.77,
+    "controlCircle"
+  )
+  .setScrollFactor(0)
+  .setDepth(200)
+  .setAlpha(0.8)
+  .setInteractive();
+
+  this.upBtn.on("pointerdown", () => { this.mobileMovingUp = true; });
+  this.upBtn.on("pointerup",   () => { this.mobileMovingUp = false; });
+  this.upBtn.on("pointerout",  () => { this.mobileMovingUp = false; });
+
+
+  // 🔽 **DOWN button**
+  this.downBtn = this.add.image(
+    this.scale.width * 0.15,
+    this.scale.height * 0.89,
+    "controlCircle"
+  )
+  .setScrollFactor(0)
+  .setDepth(200)
+  .setAlpha(0.8)
+  .setInteractive();
+
+  this.downBtn.on("pointerdown", () => { this.mobileMovingDown = true; });
+  this.downBtn.on("pointerup",   () => { this.mobileMovingDown = false; });
+  this.downBtn.on("pointerout",  () => { this.mobileMovingDown = false; });
+}
+
+
+
+
 
 
 
@@ -595,6 +543,7 @@ else {
 
 
 
+// === MOBILE BUTTON MOVEMENT ===
 if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
   const speed = 260;
 
@@ -605,9 +554,18 @@ if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
   } else {
     this.player.setVelocityY(0);
   }
-} else {
-  // desktop: do nothing or keep it empty
+
+// } else {
+//   // === DESKTOP KEYBOARD ===
+//   if (this.cursors.up.isDown) {
+//     this.player.setVelocityY(-400);
+//   } else if (this.cursors.down.isDown) {
+//     this.player.setVelocityY(400);
+//   } else {
+//     this.player.setVelocityY(0);
+//   }
 }
+
 
 
 
