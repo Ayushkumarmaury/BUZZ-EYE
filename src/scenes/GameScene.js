@@ -758,6 +758,10 @@ resize(gameSize) {
   worm.setVelocityX(-120);         // crawling speed
   worm.play("worm");
 
+   // 🔹 reduce collision area
+    worm.body.setSize(worm.width * 0.5, worm.height * 0.5);
+    worm.body.setOffset(worm.width * 0.25, worm.height * 0.25);
+
 
 // 👇 Make every worm jump differently
 const randomDelay = Phaser.Math.Between(800, 4000);   // jump interval per worm
