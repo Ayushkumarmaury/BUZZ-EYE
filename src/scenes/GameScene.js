@@ -720,7 +720,11 @@ resize(gameSize) {
     // scale + physics
     enemy.setScale(1.3);
     enemy.body.allowGravity = false;
-    enemy.setVelocityX(Phaser.Math.Between(-300, -600)); // speed to left
+    enemy.setVelocityX(Phaser.Math.Between(-300, -550)); // speed to left
+
+    // 🔹 reduce collision area
+    enemy.body.setSize(enemy.width * 0.5, enemy.height * 0.5);
+    enemy.body.setOffset(enemy.width * 0.25, enemy.height * 0.25);
 
     // play animation
     enemy.play(type + "_fly");
