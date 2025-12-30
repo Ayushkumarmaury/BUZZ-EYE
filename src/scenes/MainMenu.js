@@ -10,7 +10,7 @@ export default class MenuScene extends Phaser.Scene {
   preload() {
     this.load.image("play_btn", "button.png"); // Game Over image
 
-    this.load.audio("audio", "bg_music.mp3");
+    
   }
 
   create() {
@@ -60,10 +60,9 @@ export default class MenuScene extends Phaser.Scene {
     });
 
 
-    this.saudio = this.sound.add("audio", { loop: false, volume: 0.5 });
+   
     // Click
     this.play_btn.on("pointerdown", () => {
-      this.saudio.play();
       this.scene.start("GameScene");
     });
 

@@ -11,6 +11,7 @@ export default class GameScene extends Phaser.Scene {
     this.load.image("bg", "bgplanat.jpg");
     this.load.image("bg2", "land.jpg");
 
+    this.load.audio("audio", "bg_music.mp3");
 
 
      this.load.spritesheet("player", "bee.png", {
@@ -48,6 +49,9 @@ export default class GameScene extends Phaser.Scene {
 
     this.score = 0;
 
+
+     this.saudio = this.sound.add("audio", { loop: true, volume: 0.5 });
+     this.saudio.play();
     // allow 3 simultaneous touches
   this.input.addPointer(2); // 1 extra pointer = total 3 pointers including default
 
@@ -420,6 +424,7 @@ if (this.sys.game.device.os.android || this.sys.game.device.os.iOS) {
   endGame() {
     this.isGameOver = true;
     this.scene.stop("GameScene");
+    this.saudio.stop();
     this.scene.start("GameOverScene", { score: this.score });
   }
 
