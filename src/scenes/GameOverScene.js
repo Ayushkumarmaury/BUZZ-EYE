@@ -28,9 +28,11 @@ this.input.topOnly = true;
       "replay_btn"
     );
 
+
+    let n = (this.sys.game.device.os.android || this.sys.game.device.os.iOS) ? 0.4 :0.2;
     // scale responsive
-    const maxWidth = this.scale.width * 0.2;
-    const maxHeight = this.scale.height * 0.2;
+    const maxWidth = this.scale.width * n;
+    const maxHeight = this.scale.height * n;
     const scaleX = maxWidth / this.gameOverImage.width;
     const scaleY = maxHeight / this.gameOverImage.height;
     this.originalScale = Math.min(scaleX, scaleY);
@@ -52,18 +54,24 @@ this.input.topOnly = true;
       this.scene.start("GameScene");
     });
 
+
+
+    let m = (this.sys.game.device.os.android || this.sys.game.device.os.iOS) ? 0.09 :0.03;
     // --- Score Text ---
     this.scoreText = this.add.text(
       this.scale.width / 2,
       this.scale.height * 0.2,
       `Your Score is ${this.finalScore}.`,
       {
-        fontSize: `${Math.floor(this.scale.width * 0.03)}px`,
+        fontSize: `${Math.floor(this.scale.width * m)}px`,
         fill: "rgba(244, 53, 28, 1)",
         fontFamily: "cursive",
         fontStyle: "bold",
       }
     ).setOrigin(0.5).setDepth(10);
+
+
+    let m_another = (this.sys.game.device.os.android || this.sys.game.device.os.iOS) ? 0.05 :0.03;
 
     // --- Instruction Text ---
     this.restartText = this.add.text(
@@ -71,7 +79,7 @@ this.input.topOnly = true;
       this.scale.height * 0.3,
       "Click on replay Button to play again.",
       {
-        fontSize: `${Math.floor(this.scale.width * 0.03)}px`,
+        fontSize: `${Math.floor(this.scale.width * m_another)}px`,
          fill: "rgba(244, 53, 28, 1)",
           fontFamily: "cursive",
           fontStyle: "bold",

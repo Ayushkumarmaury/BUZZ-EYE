@@ -688,8 +688,9 @@ resize(gameSize) {
   }
 
   // Resize score text
+  let m_score = (this.sys.game.device.os.android || this.sys.game.device.os.iOS) ? 0.03 :0.03;
   if (this.scoreText) {
-    this.scoreText.setFontSize(Math.floor(width * 0.03));
+    this.scoreText.setFontSize(Math.floor(width * m_score));
   }
 }
 

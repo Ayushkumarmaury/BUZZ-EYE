@@ -16,9 +16,10 @@ export default class MenuScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor("rgba(230, 151, 91, 1)");
 
 
+       let m = (this.sys.game.device.os.android || this.sys.game.device.os.iOS) ? 0.13 :0.06;
      // --- Responsive Restart Instruction ---
     this.nameText = this.add.text(this.scale.width / 2, this.scale.height * 0.3, "Buzz Eye", {
-      fontSize: `${Math.floor(this.scale.width * 0.06)}px`,
+      fontSize: `${Math.floor(this.scale.width * m)}px`,
      fill: "rgba(244, 53, 28, 1)",
       fontFamily: "cursive",
       fontStyle: "bold",
@@ -27,8 +28,10 @@ export default class MenuScene extends Phaser.Scene {
     
     this.play_btn = this.add.image(this.scale.width / 2, this.scale.height * 0.5,"play_btn");
 
-    const maxWidth = this.scale.width * 0.2;
-    const maxHeight = this.scale.height * 0.2;
+    let n = (this.sys.game.device.os.android || this.sys.game.device.os.iOS) ? 0.4 :0.2;
+
+    const maxWidth = this.scale.width * n;
+    const maxHeight = this.scale.height * n;
 
     const scaleX = maxWidth / this.play_btn.width;
     const scaleY = maxHeight / this.play_btn.height;
