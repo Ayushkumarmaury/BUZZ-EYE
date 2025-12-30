@@ -710,10 +710,12 @@ resize(gameSize) {
     );
 
     // scale + physics
-    let scale = (this.sys.game.device.os.android || this.sys.game.device.os.iOS) ? 0.9 :1.5;
-    enemy.setScale(scale);
+    let scale_enemy = (this.sys.game.device.os.android || this.sys.game.device.os.iOS) ? 0.9 :1.5;
+    let lower = (this.sys.game.device.os.android || this.sys.game.device.os.iOS) ? 250 :350;
+    let higher = (this.sys.game.device.os.android || this.sys.game.device.os.iOS) ? 400 :700;
+    enemy.setScale(scale_enemy);
     enemy.body.allowGravity = false;
-    enemy.setVelocityX(Phaser.Math.Between(-300, -550)); // speed to left
+    enemy.setVelocityX(Phaser.Math.Between(-lower, -higher)); // speed to left
 
     // 🔹 reduce collision area
     enemy.body.setSize(enemy.width * 0.5, enemy.height * 0.5);
@@ -734,8 +736,8 @@ resize(gameSize) {
     "worm"
   );
 
-  let scale = (this.sys.game.device.os.android || this.sys.game.device.os.iOS) ? 0.4 :0.6;
-  worm.setScale(scale);
+  let scale_worm = (this.sys.game.device.os.android || this.sys.game.device.os.iOS) ? 0.4 :0.6;
+  worm.setScale(scale_worm);
   worm.refreshBody();
   worm.body.setGravityY(800);     // <-- important
   worm.setVelocityX(-120);         // crawling speed
