@@ -96,7 +96,7 @@ export default class GameScene extends Phaser.Scene {
 
 
 
-
+let scale_player = (this.sys.game.device.os.android || this.sys.game.device.os.iOS) ? 0.5 :0.7;
 
  this.anims.create({
       key: "player",
@@ -110,7 +110,7 @@ export default class GameScene extends Phaser.Scene {
   50,
   this.cameras.main.height / 2,
   "player"
-).setScale(0.7);
+).setScale(scale_player);
  this.player.play("player");
 
 this.player.body.setAllowGravity(false);
@@ -214,25 +214,6 @@ this.physics.add.collider(this.worms, this.ground);
 
 
 
-// this.scale.on("resize", (gameSize) => {
-
-
-
-
-//   this.bg.setSize(gameSize.width, gameSize.height);
-//   this.bg2.setSize(gameSize.width, gameSize.height);
-
-//   this.ground.setPosition(
-//     gameSize.width / 2,
-//     gameSize.height - 88
-//   );
-
-//   this.ground.width = gameSize.width;
-
-//   // 🔥 THIS LINE MAKES COLLISION WORK AFTER RESIZE
-//   this.ground.body.setSize(this.ground.width, this.ground.height);
-//   this.ground.body.updateFromGameObject();
-// });
 
 
 // === handle resize events ===
@@ -729,7 +710,8 @@ resize(gameSize) {
     );
 
     // scale + physics
-    enemy.setScale(1.3);
+    let scale = (this.sys.game.device.os.android || this.sys.game.device.os.iOS) ? 0.9 :1.5;
+    enemy.setScale(scale);
     enemy.body.allowGravity = false;
     enemy.setVelocityX(Phaser.Math.Between(-300, -550)); // speed to left
 
@@ -752,7 +734,8 @@ resize(gameSize) {
     "worm"
   );
 
-  worm.setScale(0.5);
+  let scale = (this.sys.game.device.os.android || this.sys.game.device.os.iOS) ? 0.4 :0.6;
+  worm.setScale(scale);
   worm.refreshBody();
   worm.body.setGravityY(800);     // <-- important
   worm.setVelocityX(-120);         // crawling speed
