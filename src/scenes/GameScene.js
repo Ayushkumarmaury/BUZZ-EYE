@@ -118,6 +118,17 @@ this.player.body.setCollideWorldBounds(true);
 this.player.body.setGravityY(800);
 this.player.body.setCollideWorldBounds(true);
 
+// --- Shrink player hitbox ---
+this.player.body.setSize(
+  this.player.width * 0.55,   // width scale
+  this.player.height * 0.65   // height scale
+);
+
+// --- Center the body inside sprite ---
+this.player.body.setOffset(
+  this.player.width * 0.22,   // X offset
+  this.player.height * 0.18   // Y offset
+);
 
 
 
